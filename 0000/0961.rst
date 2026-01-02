@@ -1,0 +1,13 @@
+// 961. N-Repeated Element in Size 2N Array
+
+impl Solution {
+    pub fn repeated_n_times(nums: Vec<i32>) -> i32 {
+        let n = nums.len() / 2;
+        let mut freq = vec![0;10000];
+        for num in nums {
+            freq[num as usize] += 1;
+            if freq[num as usize] == n { return num}
+        }
+        return 0;
+    }
+}

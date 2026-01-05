@@ -1,0 +1,30 @@
+// 1975. Maximum Matrix Sum
+impl Solution {
+    pub fn max_matrix_sum(matrix: Vec<Vec<i32>>) -> i64 {
+        let mut cntZero:i32 = 0;
+        let mut cntNeg:i32 = 0;
+        let mut minAbs:i32 = i32::MAX;
+        let mut res :i64 = 0;
+
+        for vec in matrix {
+            for x in vec {
+                let absX = x.abs();
+                res = res + absX as i64;
+                if x == 0 {
+                    cntZero = cntZero + 1;
+                } else {
+                    minAbs = std::cmp::min(minAbs, absX);
+                    if (x<0) {
+                        cntNeg = cntNeg + 1;
+                    }
+                }
+            }
+        }
+
+        if (cntNeg%2==1 && cntZero==0) {
+            res = res - 2*minAbs as i64;
+        }
+
+        return res;
+    }
+}
